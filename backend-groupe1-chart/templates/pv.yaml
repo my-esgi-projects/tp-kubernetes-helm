@@ -12,7 +12,7 @@ spec:
     storage: {{ .Values.volume.pv.storage }}
   accessModes:
     - {{ .Values.volume.pv.accessMode }}
-  persistentVolumeReclaimPolicy: {{ .Values.volume.pv.storage }}
+  persistentVolumeReclaimPolicy: {{ .Values.volume.pv.reclaimPolicy }}
   hostPath:
     path: {{ .Values.volume.pv.path }}
   storageClassName: {{ .Values.volume.storageclass }}
