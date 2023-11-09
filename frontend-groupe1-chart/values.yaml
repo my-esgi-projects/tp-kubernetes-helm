@@ -28,7 +28,7 @@ secret:
     password: YWRtaW4K
 
 configMap:
-  name: frontend-groupe1-chart-secret
+  name: frontend-groupe1-chart-configmap
 
 volume:
   name: frontend-groupe1-chart-shared-vol
