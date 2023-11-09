@@ -20,7 +20,8 @@ spec:
     spec:
       containers:
         - name: app-backend
-          image: {{ .Values.image.repository }}: {{ .Values.image.tag }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
             - name: data-volume
               mountPath: /data
