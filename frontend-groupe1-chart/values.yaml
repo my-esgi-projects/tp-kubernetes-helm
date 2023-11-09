@@ -1,0 +1,37 @@
+# Default values for frontend-groupe1-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+namespace: esgi-tp-group1
+
+replicaCount: 3
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "1.25.3"
+
+
+podAnnotations: {}
+podLabels: {}
+
+service:
+  type: ClusterIP
+  name: frontend-groupe1-chart-svc
+  port: 80
+
+secret:
+  name: frontend-groupe1-chart-secret
+  type: Opaque
+  data:
+    username: YWRtaW4K
+    password: YWRtaW4K
+
+configMap:
+  name: frontend-groupe1-chart-secret
+
+volume:
+  name: frontend-groupe1-chart-shared-vol
+
+env:
+  name: dev
