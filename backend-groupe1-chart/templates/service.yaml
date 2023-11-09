@@ -11,6 +11,7 @@ metadata:
 spec:
   selector:
     app: backend
+  type: {{ .Values.service.type }}
   ports:
     - protocol: TCP
       name: api
