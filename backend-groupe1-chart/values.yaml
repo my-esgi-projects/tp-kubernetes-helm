@@ -9,7 +9,7 @@ replicaCount: 3
 image:
   repository: kuramoto/spring-boot-rest
   pullPolicy: IfNotPresent
-  tag: "7"
+  tag: "latest"
 
 
 service:
