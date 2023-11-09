@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    purpose: backend
+    group: group1
+    organization: esgi
+spec:
+  selector:
+    app: backend
+  type: {{ .Values.service.type }}
+  ports:
+    - protocol: TCP
+      name: api
+      port: {{ .Values.service.api.port }}
+      targetPort: 8090
+    - protocol: TCP
+      name: apimonitor
+      port: {{ .Values.service.apimonitor.port }}
+      targetPort: 8091

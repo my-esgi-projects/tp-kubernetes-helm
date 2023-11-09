@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+  namespace: {{ .Values.namespace }}
+  labels:
+    purpose: backend
+    group: group1
+    organization: esgi
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: app-backend
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - name: data-volume
+              mountPath: /data
+          ports:
+            - containerPort: 8090
+              name: api
+            - containerPort: 8091
+              name: apimonitor
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: {{ .Values.volume.pvc.name }}

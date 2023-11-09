@@ -1,0 +1,39 @@
+# Default values for database-groupe1-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: esgi-tp-group1
+
+replicaCount: 3
+
+image:
+  repository: mariadb
+  pullPolicy: IfNotPresent
+  tag: "11.1.2"
+
+service:
+  name: database-groupe1-chart-svc
+  type: ClusterIP
+  port: 3306
+
+volume:
+  storageclass: database-groupe1-chart-sc
+  pv:
+    name: database-groupe1-chart-pv
+    path: /data/database-groupe1
+    accessMode: ReadWriteMany
+    reclaimPolicy: Delete
+    storage: 1Gi
+  pvc:
+    name: database-groupe1-chart-pvc
+    accessMode: ReadWriteMany
+    storage: 1Gi
+
+secret:
+  name: database-groupe1-chart-secret
+  type: Opaque
+  data:
+    username: YWRtaW4K  #admin
+    userpassword: YWRtaW4K
+    rootpassword: YWRtaW4K
+    database: dGVzdAo=  #test

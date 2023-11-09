@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.volume.pvc.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    purpose: backend
+    group: group1
+    organization: esgi
+spec:
+  accessModes:
+    - {{ .Values.volume.pvc.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.volume.pvc.storage }}
+  storageClassName: {{ .Values.volume.storageclass }}

@@ -1,0 +1,55 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: esgi-group1-ingress
+  namespace: esgi-tp-group1
+  annotations: {}
+  labels:
+    app.kubernetes.io/name: esgi-tp-group1
+    purpose: backend
+    group: group1
+    organization: esgi
+
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - tp-group1-api.prod.daja-ops.fr
+        - tp-group1-api-monitor.prod.daja-ops.fr
+        - tp-group1-front.prod.daja-ops.fr
+      secretName: esgi-group1-tp-secret-tls
+  rules:
+    - host: tp-group1-api.prod.daja-ops.fr
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: backend-groupe1-chart-svc
+                port:
+                  number: 80
+    - host: tp-group1-api-monitor.prod.daja-ops.fr
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: backend-groupe1-chart-svc
+                port:
+                  number: 81
+
+    - host: tp-group1-front.prod.daja-ops.fr
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: frontend-groupe1-chart-svc
+                port:
+                  number: 80
+
+  
