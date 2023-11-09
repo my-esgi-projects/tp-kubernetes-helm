@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-group1-deployment
+  namespace: esgi-tp-group1
+  labels:
+    purpose: backend
+    group: group1
+    organization: esgi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: spring-backend
+          image: kuramoto/spring-boot-rest
+          volumeMounts:
+            - name: data-volume
+              mountPath: /data
+          ports:
+            - containerPort: 8090
+              name: api
+            - containerPort: 8091
+              name: op
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: backend-group1-pvc

@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: esgi-tp-group1
+  labels:
+    group: group1
+    organization: esgi
+
