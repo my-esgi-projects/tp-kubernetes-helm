@@ -21,6 +21,7 @@ service:
     port: 81
 
 volume:
+  storageclass: backend-groupe1-chart-sc
   pv:
     name: backend-groupe1-chart-pv
     path: /data/backend-group1
